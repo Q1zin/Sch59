@@ -1,0 +1,27 @@
+# Options +FollowSymLinks -Indexes
+# RewriteEngine On 
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteRule ^([^.]+)$ $1.php [NC,L]
+# RewriteRule  ^([sveden/]+[0-9A-Za-z-]+)/?$ /sveden.php?for=$1 [L,QSA]
+#ErrorDocument 404 http://sch59.su/error-404.php
+
+
+
+
+#RewriteCond ^(\<sveden\>)$ =off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]
+
+#RewriteCond %{HTTPS} =off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]
+
+#RewriteCond %{REQUEST_URI} ^(.*).php$ 
+#RewriteRule ^(.*).php$ https://%{HTTP_HOST}/$1 [NC,L]
+
+#RewriteRule ^(login|logout|profile)$ /$1.php [R=301,L]
+
+#RewriteEngine On
+#RewriteBase /
+
+#Redirect sveden/ http://%{HTTP_HOST}/sveden.php
+#RewriteRule ^sveden/([^/]+) sveden.php?for=$1
+#RewriteRule ^sveden/ sveden.php?for=123
