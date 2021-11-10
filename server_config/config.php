@@ -219,7 +219,7 @@ class GetContentAbout
     $this->admin_check = $admin_check;
   }
 
-  public function link_conversion($path_name)
+  private function link_conversion($path_name)
   {
     return str_replace(array("/", "\\"), "", $path_name);
   }
@@ -254,27 +254,15 @@ class GetContentAbout
     // Добавить разбив по блокам (типу)
     $content = "";
 
-    foreach ($get_content as $key => &$value) {
+    foreach ($get_content as &$value) {
       if ($value['type'] == "link") {
-        if ($get_content[$key - 1]['type'] != "link") {
-          $content .= "<div class=\"sveden-oo__content--doc sveden-oo__doc\">";
-        }
-        $content .= "<div class=\"sveden-oo__doc-wrap\">
-        
-        <a target=\"_blank\" class=\"sveden-oo__doc--link\" href=" . $value['link'] . ">
-        <img src=\"https://" . SITE_HOST . "/img/service/" . $value['type_link'] . ".png\" alt=\"icon: " . $value['type_link'] . "\" class=\"sveden-oo__doc--img\">
-        " . $value['title'] . "</a></div>";
-        if ($get_content[$key + 1]['type'] != "link") {
-          $content .= "</div>";
-        }
+        $content .= "<div class=\"doc-wrap\">
+        <img src=\"https://" . SITE_HOST . "/img/service/" . $value['type_link'] . ".svg\" alt=\"icon: " . $value['type_link'] . "\" class=\"document-link__img\">
+        <a target=\"_blank\" class=\"link document-link doc-word\" href=" . $value['link'] . ">" . $value['title'] . "</a></div>";
       } else if ($value['type'] == "text") {
-        if ($get_content[$key - 1]['type'] != "text") {
-          $content .= "<div class=\"sveden-oo__content--text sveden-oo__text-wrap\">";
-        }
-        $content .= "<p class=\"sveden-oo__text--item\">" . $value['content'] . "</p>";
-        if ($get_content[$key + 1]['type'] != "text") {
-          $content .= "</div>";
-        }
+        $content .= "<div class=\"text-wrap\">
+        <p class=\"text-content\">" . $value['content'] . "</p>
+        </div>";
       }
     }
     return $content;
@@ -286,13 +274,12 @@ class GetContentAbout
 
     foreach ($get_content as &$value) {
       if ($value['type'] == "link") {
-        $content .= "<div class=\"sveden-oo__content--doc sveden-oo__doc-wrap\">
-          <img src=\"https://" . SITE_HOST . "/img/service/" . $value['type_link'] . ".svg\" alt=\"icon: " . $value['type_link'] . "\" class=\"sveden-oo__doc--img\">
-          <a target=\"_blank\" class=\"sveden-oo__doc--link\" href=" . $value['link'] . ">" . $value['title'] . "</a>
-          </div>";
+        $content .= "<div class=\"doc-wrap\">
+        <img src=\"https://" . SITE_HOST . "/img/service/" . $value['type_link'] . ".svg\" alt=\"icon: " . $value['type_link'] . "\" class=\"document-link__img\">
+        <a target=\"_blank\" class=\"link document-link doc-word\" href=" . $value['link'] . ">" . $value['title'] . "</a></div>";
       } else if ($value['type'] == "text") {
-        $content .= "<div class=\"sveden-oo__content--doc sveden-oo__text-wrap\">
-          <p class=\"sveden-oo__text--item\">" . $value['content'] . "</p>
+        $content .= "<div class=\"text-wrap\">
+        <p class=\"text-content\">" . $value['content'] . "</p>
         </div>";
       }
     }

@@ -1,14 +1,20 @@
 .sveden-oo
   padding: 20px 0
+  &__container
+    flex-direction: column
+  &__title
+    font-size: 32px
+    margin-top: 10px
   &-wrap
     width: 100%
     display: flex
     justify-content: space-between
+    align-items: flex-start
   &__links
     width: 30%
-    // outline: 1px red solid
-    border: 1px black solid
-    border-bottom: none
+    border: 1px #999 solid
+    border-radius: 4px
+    // border-bottom: none
     &-wrap
       width: 100%
       margin: 0
@@ -17,14 +23,120 @@
     &-item
       width: 100%
       padding: 4px 2px
-      border-bottom: 1px black solid
+      border-bottom: 1px #999 solid
       &--a
         display: block
         width: 100%
         padding: 12px 8px
         color: #000000
         text-decoration: none
+        font-size: 16px
+      &:last-child
+        border-bottom: none
   &__content
     width: 70%
-    outline: 1px blue solid
-    padding: 16px 10px
+    padding: 6px 16px
+    &--title
+      margin-top: 0
+      margin-top: 0
+      font-size: 24px
+  &__doc
+    margin-bottom: 10px
+    &-wrap
+      width: 100%
+      border-bottom: 1px #999 solid
+      display: flex
+      align-items: center
+      padding: 6px 4px
+    &--img
+      width: 30px
+      font-size: 16px
+      display: block
+      margin-right: 10px
+    &--link
+      display: flex
+      align-items: center
+      font-size: 16px
+      color: #6767F6
+      width: 100%
+      // text-decoration: none
+  &__text
+    &-wrap
+      margin: 0 0 10px 0
+    &--item
+      margin: 0
+      padding: 0
+      font-size: 16px
+      &:nth-child(1)
+        margin-top: 0
+
+// @media (max-width: 1200px)
+
+@media (max-width: 992px)
+  .sveden-oo
+    &__title
+      font-size: 28px
+    &__links
+      &-item
+        &--a
+          padding: 10px 6px
+          font-size: 14px
+    &__content
+      &--title
+        font-size: 20px
+    &__doc
+      &--img
+        font-size: 14px
+      &--link
+        font-size: 14px
+    &__text
+      &--item
+        font-size: 14px
+
+@media (max-width: 768px)
+  .sveden-oo
+    &__title
+      font-size: 24px
+      margin-top: 0
+    &__links
+      &-item
+        &--a
+          padding: 8px 4px
+          font-size: 12px
+    &__content
+      &--title
+        font-size: 18px
+    &__doc
+      &--img
+        font-size: 12px
+      &--link
+        font-size: 12px
+    &__text
+      &--item
+        font-size: 12px
+
+@media (max-width: 576px)
+  .sveden-oo
+    &-wrap
+      flex-direction: column
+      justify-content: start
+    &__links
+      width: 100%
+      margin-bottom: 20px
+      &-item
+        &--a
+          padding: 10px 6px
+          font-size: 14px
+    &__content
+      width: 100%
+      order: -1
+      padding: 0
+      margin-bottom: 20px
+    &__doc
+      &--img
+        font-size: 14px
+      &--link
+        font-size: 14px
+    &__text
+      &--item
+        font-size: 14px
