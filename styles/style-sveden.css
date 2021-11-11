@@ -252,22 +252,23 @@ button {
 }
 .sveden-oo__links {
   width: 30%;
-  border: 1px #999 solid;
-  border-radius: 4px;
 }
 .sveden-oo__links-wrap {
-  width: 100%;
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  flex-direction: column;
 }
 .sveden-oo__links-item {
   width: 100%;
-  padding: 4px 2px;
-  border-bottom: 1px #999 solid;
+  display: flex;
+  margin-bottom: 4px;
 }
 .sveden-oo__links-item--a {
-  display: block;
+  display: flex;
+  border: 1px #999 solid;
+  border-radius: 8px;
   width: 100%;
   padding: 12px 8px;
   color: #000000;
@@ -283,7 +284,7 @@ button {
 }
 .sveden-oo__content {
   width: 70%;
-  padding: 6px 16px;
+  padding: 0 16px 6px 16px;
 }
 .sveden-oo__content--title {
   margin-top: 0;
