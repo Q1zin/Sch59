@@ -54,7 +54,7 @@ class GetContentAbout
         $content .= "<div class=\"sveden-oo__doc-wrap\">
         
         <a target=\"_blank\" class=\"sveden-oo__doc--link\" href=" . $value['link'] . ">
-        <img src=\"https://" . SITE_HOST . "/img/service/" . $value['type_link'] . ".png\" alt=\"icon: " . $value['type_link'] . "\" class=\"sveden-oo__doc--img\">
+        <img src=\"https://" . SITE_HOST . "/img/service/" . $value['type_link'] . ".svg\" alt=\"icon: " . $value['type_link'] . "\" class=\"sveden-oo__doc--img\">
         " . $value['title'] . "</a></div>";
         if ($get_content[$key + 1]['type'] != "link") {
           $content .= "</div>";
