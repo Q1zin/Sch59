@@ -1,3 +1,0 @@
-2021-11-10 15:30:14 (МСК) - Не удалось подключиться к БД "mysql:host=localhost;dbname=q1zin146_school_site;charset=utf8;login=q1zin146_root;password:hy4uKT8G9DUie8J" ::: SQLSTATE[HY000] [1045] Access denied for user 'q1zin146_root'@'localhost' (using password: YES)
-2021-11-10 15:30:14 (МСК) - Запрос не прошёл, тк не удалось подключиться к БД
-2021-11-10 15:30:14 (МСК) - Ошибка!!! при поиске контена во вкладке "sveden" ::: common

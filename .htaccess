@@ -2,6 +2,11 @@ Options +FollowSymLinks -Indexes
 
 RewriteEngine On 
 RewriteBase /
+
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 RewriteRule ^sveden/(.*)$ "/sveden.php/$1" [L,QSA]
 
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -12,16 +17,9 @@ RewriteRule ^(.*)$ https://q1zin.ru/$1 [R=301,L]
 
 ErrorDocument 404 https://q1zin.ru/error-404
 
-#RewriteCond %{HTTPS} off
-#RewriteCond %{HTTP:X-Forwarded-Proto} !https
-#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-
 #http://sch59.su/sveden/common
 
-
 # RewriteRule  ^([sveden/]+[0-9A-Za-z-]+)/?$ /sveden.php?for=$1 [L,QSA]
-
 
 #RewriteCond ^(\<sveden\>)$ =off
 #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]

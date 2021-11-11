@@ -14,7 +14,6 @@
     width: 30%
     border: 1px #999 solid
     border-radius: 4px
-    // border-bottom: none
     &-wrap
       width: 100%
       margin: 0
@@ -31,6 +30,9 @@
         color: #000000
         text-decoration: none
         font-size: 16px
+        &--active
+          color: #2E0066
+          font-weight: 500
       &:last-child
         border-bottom: none
   &__content
@@ -38,8 +40,10 @@
     padding: 6px 16px
     &--title
       margin-top: 0
-      margin-top: 0
       font-size: 24px
+      font-weight: 600
+    &--close
+      display: none
   &__doc
     margin-bottom: 10px
     &-wrap
@@ -59,7 +63,10 @@
       font-size: 16px
       color: #6767F6
       width: 100%
-      // text-decoration: none
+      text-decoration: none
+      &:hover
+        text-decoration: underline
+
   &__text
     &-wrap
       margin: 0 0 10px 0
@@ -111,6 +118,8 @@
         font-size: 12px
       &--link
         font-size: 12px
+        &:hover
+          text-decoration: none
     &__text
       &--item
         font-size: 12px
