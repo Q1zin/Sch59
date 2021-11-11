@@ -282,7 +282,7 @@ button {
 }
 .sveden-oo__content {
   width: 70%;
-  padding: 6px 16px;
+  padding: 0 16px 6px 16px;
 }
 .sveden-oo__content--title {
   margin-top: 0;
