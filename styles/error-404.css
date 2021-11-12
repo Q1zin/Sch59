@@ -286,6 +286,12 @@ button {
   background-color: #fff;
 }
 
+@media (max-width: 768px) {
+  .error-404__btn:hover {
+    color: #fff;
+    background-color: #6767F6;
+  }
+}
 @media (max-width: 576px) {
   .error-404__title {
     padding: 0;
