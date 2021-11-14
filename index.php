@@ -14,6 +14,7 @@
   include 'blocks/header.php';
   include 'blocks/news.php';
   include 'blocks/footer.php';
+  include 'blocks/accept-cookies.php';
   ?>
 
 

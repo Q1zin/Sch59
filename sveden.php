@@ -37,6 +37,7 @@ $title = $list_title[$title_tag];
   include 'blocks/header.php';
   include 'blocks/sveden-oo.php';
   include 'blocks/footer.php';
+  include 'blocks/accept-cookies.php';
   ?>
 
 </body>

@@ -14,6 +14,7 @@
   include 'blocks/header.php';
   include 'blocks/error-404.php';
   include 'blocks/footer.php';
+  include 'blocks/accept-cookies.php';
   ?>
 </body>
 
