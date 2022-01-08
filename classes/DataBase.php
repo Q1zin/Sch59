@@ -19,7 +19,7 @@ class DataBase
     }
   }
 
-  public function db_query($sql = '', $exec = false)
+  public function query($sql = '', $exec = false)
   {
     /*
     $exec = false -> ИЩЕТ что-то в БД и выводит в массиве
@@ -36,15 +36,11 @@ class DataBase
       return false;
     }
 
-    $this->db->beginTransaction();
-
     if ($exec) {
       try {
         $result = $this->db->exec($sql);
-        $this->db->commit();
         return $result;
       } catch (PDOException $error) {
-        $this->db->rollBack();
         add_error_log("Ошибка ::: " . $error->getMessage() . " Описание ошибки ::: " .
           "errorInfo()[0] : " . $this->db->errorInfo()[0] .
           " errorInfo()[1] : " . $this->db->errorInfo()[1] .
@@ -55,10 +51,8 @@ class DataBase
 
     try {
       $result = $this->db->query($sql);
-      $this->db->commit();
       return $result->fetchAll();
     } catch (PDOException $error) {
-      $this->db->rollBack();
       add_error_log("Ошибка ::: " . $error->getMessage() . " Описание ошибки ::: " .
         "errorInfo()[0] : " . $this->db->errorInfo()[0] .
         " errorInfo()[1] : " . $this->db->errorInfo()[1] .
@@ -67,7 +61,7 @@ class DataBase
     }
   }
 
-  public function db_query_prepare($sql = '', $params = [], $exec = false)
+  public function query_prepare($sql = '', $params = [], $exec = false)
   {
     /*
     $exec = false -> ИЩЕТ что-то в БД и выводит в массиве
@@ -93,16 +87,12 @@ class DataBase
       $params = array($params);
     }
 
-    $this->db->beginTransaction();
-
     if ($exec) {
       try {
         $result = $this->db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $result->execute($params);
-        $this->db->commit();
         return $result->rowCount();
       } catch (PDOException $error) {
-        $this->db->rollBack();
         add_error_log("Ошибка ::: " . $error->getMessage() . " Описание ошибки ::: " .
           "errorInfo()[0] : " . $this->db->errorInfo()[0] .
           " errorInfo()[1] : " . $this->db->errorInfo()[1] .
@@ -114,10 +104,8 @@ class DataBase
     try {
       $result = $this->db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
       $result->execute($params);
-      $this->db->commit();
       return $result->fetchAll();
     } catch (PDOException $error) {
-      $this->db->rollBack();
       add_error_log("Ошибка ::: " . $error->getMessage() . " Описание ошибки ::: " .
         "errorInfo()[0] : " . $this->db->errorInfo()[0] .
         " errorInfo()[1] : " . $this->db->errorInfo()[1] .
@@ -125,9 +113,4 @@ class DataBase
       return false;
     }
   }
-
-  // function __destruct()
-  // {
-  //   $this->db = null;
-  // }
 }

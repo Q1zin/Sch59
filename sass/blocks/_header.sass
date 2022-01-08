@@ -1,7 +1,214 @@
 .header
-  display: flex
-  align-items: center
-  justify-content: center
-  width: 100%
-  height: 50px
-  background-color: #A1C1F1
+  padding: 30px 0 90px 0
+  &__menu
+    display: none
+    &-bg
+      display: none
+    &-btn
+      display: none
+  &__background
+    background: rgba(34, 50, 102, 0.5)
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: -1
+    & img
+      width: 100%
+      height: 100%
+      object-fit: cover
+    & .shadow
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background-color: rgba(34, 50, 102, 0.5)
+  &-container
+    z-index: 10
+  &-wrap
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+  &__left
+    margin-right: 55px
+    &-link
+      text-decoration: none
+    &-img
+      width: 160px
+      height: 160px
+  &__right
+    &-subtitle
+      font-weight: 500
+      font-size: 18px
+      line-height: 22px
+      color: #ffffff
+      margin: 0
+    &-title
+      font-weight: 600
+      font-size: 24px
+      line-height: 29px
+      color: #ffffff
+      margin: 0 0 14px 0
+    &-text
+      font-weight: 500
+      font-size: 16px
+      line-height: 20px
+      color: #ffffff
+      margin: 0
+      &--link
+        text-decoration: none
+        color: #ffffff
+  &__bottom
+    position: absolute
+    bottom: 0
+    width: 100%
+    background: rgba(34, 50, 102, 0.7)
+    display: flex
+    align-items: center
+    justify-content: center
+    &-item
+      padding: 17px 12px
+      font-weight: 500
+      font-size: 14px
+      line-height: 17px
+      color: #FFFFFF
+      text-decoration: none
+      transition: all 0.2s
+      &:hover
+        background-color: #536293
+
+@media (max-width: 1200px)
+  .header
+    padding: 30px 0 80px 0
+    &__left
+      margin-right: 25px
+    &__right-title
+      margin-bottom: 6px
+
+@media (max-width: 992px)
+  .header
+    padding: 30px 0 80px 0
+    &__left
+      width: 130px
+      height: 130px
+      &-img
+        width: 130px
+        height: 130px
+    &__right
+      &-subtitle
+        font-size: 14px
+      &-title
+        font-size: 18px
+        margin-bottom: 9px
+      &-text
+        font-size: 16px
+@media (max-width: 768px)
+  .header
+    padding: 20px 0 20px 0
+    &-wrap
+      flex-wrap: nowrap
+    &__left
+      width: 120px
+      height: 120px
+      margin-right: 20px
+      &-img
+        width: 120px
+        height: 120px
+    &__right
+      &-subtitle
+        font-size: 12px
+        line-height: 15px
+      &-title
+        font-size: 14px
+        margin-bottom: 8px
+        line-height: 20px
+      &-text
+        font-size: 12px
+        line-height: 15px
+    &__bottom
+      display: none
+    &__menu
+      display: flex
+      position: fixed
+      top: 0
+      right: -100%
+      background-color: #223266
+      width: 220px
+      height: 100vh
+      overflow: auto
+      transition: all 0.3s
+      z-index: 120
+      &-bg
+        position: fixed
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        z-index: 100
+        background-color: #9b9b9b4d
+        &--active
+          display: block
+      &-btn
+        display: block
+        position: absolute
+        top: 11px
+        right: 15px
+        width: 20px
+        height: 20px
+        & img
+          width: 20px
+          height: 20px
+      &--active
+        right: 0
+  .menu
+    &__hide
+      position: absolute
+      left: 13px
+      top: 7px
+      &-img
+        width: 20px
+        height: 10px
+
+@media (max-width: 576px)
+  .header
+    padding: 10px 0 10px 0
+    &-wrap
+      flex-wrap: nowrap
+    &__left
+      width: 70px
+      height: 70px
+      margin-right: 12px
+      &-img
+        width: 70px
+        height: 70px
+    &__right
+      &-subtitle
+        font-size: 8px
+        line-height: 100%
+        margin-bottom: 4px
+      &-title
+        font-size: 10px
+        line-height: 100%
+      &-text
+        font-size: 8px
+        line-height: 110%
+    &__bottom
+      display: none
+    &__menu
+      display: block
+      &-btn
+        display: block
+        position: absolute
+        top: 5px
+        right: 8px
+@media (max-width: 390px)
+  .header
+    &__right
+      &-title
+        margin-bottom: 0
+        font-size: 9px
+      &-text
+        display: none

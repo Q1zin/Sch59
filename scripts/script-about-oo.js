@@ -49,20 +49,18 @@ function setSelectContent(content, title, item, href) {
   }
 
   ajaxPost("/requests/get_content_about.php", `title=${title}`, function (answer) {
-    if (answer.includes("&^%@")) {
-      answer = answer.split("&^%@")
-      let wrap = doc.createElement("div")
-      wrap.classList.add("sveden-oo__content-wrap")
-      wrap.classList.add(`${title}`)
-      wrap.innerHTML = `<h3 class="sveden-oo__content--title">${answer[0]}</h3>${answer[1]}`;
-      dropListLinks(listLink)
-      dropContent(content)
-      setSelectLink(item)
-      content.appendChild(wrap);
-      history.pushState({}, null, href);
-      if (getBodyScrollTop() - (doc.querySelector(".header").offsetHeight + 30) > 0) {
-        scrollToElement(document.getElementById("sveden-oo__title"))
-      }
+    answer = JSON.parse(answer)
+    let wrap = doc.createElement("div")
+    wrap.classList.add("sveden-oo__content-wrap")
+    wrap.classList.add(`${title}`)
+    wrap.innerHTML = `${answer['content']}`;
+    dropListLinks(listLink)
+    dropContent(content)
+    setSelectLink(item)
+    content.appendChild(wrap);
+    history.pushState({}, null, href);
+    if (getBodyScrollTop() - (doc.querySelector(".header").offsetHeight + 30) > 0) {
+      scrollToElement(document.getElementById("sveden-oo__title"))
     }
   })
 }
@@ -104,4 +102,81 @@ function scrollToElement(element) {
 
 function getBodyScrollTop() {
   return self.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop);
+}
+
+// -------------------------------
+// Обработка cookie
+// -------------------------------
+
+if (doc.getElementById("accept-cookie") != null) {
+  doc.querySelector(".accept-cookie__close").addEventListener("click", function (event) {
+    event.preventDefault()
+    doc.querySelector(".accept-cookie").remove()
+  })
+  doc.querySelector(".accept-cookie__btn").addEventListener("click", function (event) {
+    doc.querySelector(".accept-cookie").remove()
+    setCookie('accept-cookie', 'true');
+  })
+}
+
+function setCookie(name, value, options = {}) {
+
+  options = {
+    path: '/'
+  };
+
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    let optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+
+  document.cookie = updatedCookie;
+}
+
+// -------------------------------
+// Обработка menu
+// -------------------------------
+
+doc.querySelector(".header__menu-btn").addEventListener("click", function (event) {
+  event.preventDefault()
+  doc.querySelector(".header__menu").classList.add("header__menu--active")
+  doc.querySelector(".header__menu-bg").classList.add("header__menu-bg--active")
+  doc.querySelector("body").style.paddingRight = scrollWidthGet() + "px"
+  doc.querySelector("body").classList.add("stop-scroll")
+})
+
+doc.querySelector(".menu__hide").addEventListener("click", function (event) {
+  event.preventDefault()
+  doc.querySelector(".header__menu").classList.remove("header__menu--active")
+  doc.querySelector(".header__menu-bg").classList.remove("header__menu-bg--active")
+  doc.querySelector("body").style.paddingRight = 0
+  doc.querySelector("body").classList.remove("stop-scroll")
+})
+
+doc.querySelector(".header__menu-bg").addEventListener("click", function (event) {
+  event.preventDefault()
+  doc.querySelector(".header__menu").classList.remove("header__menu--active")
+  doc.querySelector(".header__menu-bg").classList.remove("header__menu-bg--active")
+  doc.querySelector("body").style.paddingRight = 0
+  doc.querySelector("body").classList.remove("stop-scroll")
+})
+
+function scrollWidthGet() {
+  let div = document.createElement('div');
+  div.style.overflowY = 'scroll';
+  div.style.width = '50px';
+  div.style.height = '50px';
+  document.body.append(div);
+  let scrollWidth = div.offsetWidth - div.clientWidth;
+  div.remove();
+  return scrollWidth
 }

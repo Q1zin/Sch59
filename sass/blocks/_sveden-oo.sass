@@ -12,8 +12,10 @@
     align-items: flex-start
   &__links
     width: 30%
-    border: 1px #999 solid
-    border-radius: 4px
+    // border: 1px #999 solid
+    // border-radius: 4px
+    border-right: 1px black solid
+    padding-right: 20px
     &-wrap
       width: 100%
       margin: 0
@@ -21,17 +23,18 @@
       list-style: none
     &-item
       width: 100%
-      border-bottom: 1px #999 solid
+      // border-bottom: 1px #999 solid
       &--a
         display: block
         width: 100%
-        padding: 12px 8px
+        padding: 12px 8px 9px 8px
         color: #000000
         text-decoration: none
         font-size: 16px
+        border-bottom: 3px transparent solid
         &--active
-          color: #2E0066
-          font-weight: 500
+          color: rgb(73,137,220)
+          border-bottom: 3px rgb(73,137,220) solid
       &:last-child
         border-bottom: none
   &__content
@@ -47,7 +50,7 @@
     margin-bottom: 10px
     &-wrap
       width: 100%
-      border-bottom: 1px #999 solid
+      // border-bottom: 1px #999 solid
       display: flex
       align-items: center
       padding: 6px 4px
@@ -75,8 +78,6 @@
       font-size: 16px
       &:nth-child(1)
         margin-top: 0
-
-// @media (max-width: 1200px)
 
 @media (max-width: 992px)
   .sveden-oo
@@ -131,6 +132,9 @@
     &__links
       width: 100%
       margin-bottom: 20px
+      padding-right: 0
+      border-right: none
+      border-top: 2px black solid
       &-item
         &--a
           padding: 10px 6px

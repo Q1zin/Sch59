@@ -17,7 +17,7 @@ RewriteRule ^(.*)$ https://q1zin.ru/$1 [R=301,L]
 
 ErrorDocument 404 https://q1zin.ru/error-404
 
-#http://sch59.su/sveden/common
+#http://q1zin.ru/sveden/common
 
 # RewriteRule  ^([sveden/]+[0-9A-Za-z-]+)/?$ /sveden.php?for=$1 [L,QSA]
 

@@ -1,0 +1,49 @@
+// Подключение normalize
+@import '../normalize'
+// Подключение переменных
+@import '../variables'
+// Подключение основных настроек
+@import '../settings'
+// Подключение стилей шапки
+@import '../blocks/header'
+// Подключение стилей подвала
+@import '../blocks/footer'
+// Подключение стилей блока cookie
+@import '../blocks/accept-cookie'
+
+.show-message
+  padding: 20px 25px
+  border-radius: 2px
+  margin-bottom: 15px
+  color: #fff
+  width: 340px
+  position: relative
+  &__wrap
+    position: fixed
+    left: 20px
+    top: 20px
+  &__error
+    background-color: #B00020
+  &__success
+    background-color: #43A047
+  &__title
+    margin: 0 0 8px 0
+    font-weight: 600
+    font-size: 14px
+    line-height: 24px
+  &__icon
+    margin-right: 10px
+  &__text
+    font-size: 14px
+    line-height: 24px
+  &__close
+    position: absolute
+    top: 22px
+    right: 25px
+
+@media (max-width: 576px)
+  .show-message
+    width: 300px
+    &__wrap
+      left: 50%
+      transform: translateX(-50%)

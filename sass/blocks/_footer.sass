@@ -3,5 +3,233 @@
   align-items: center
   justify-content: center
   width: 100%
-  height: 80px
-  background-color: #f1a1a173
+  background-color: #2d3866
+  padding: 40px 15px 30px 15px
+  &-container
+    justify-content: space-between
+    flex-wrap: wrap
+  &__main
+    width: 330px
+    display: flex
+    flex-direction: column
+    &-link
+      text-decoration: none
+      display: flex
+      align-items: center
+      margin-bottom: 20px
+      &--img
+        width: 74px
+        margin-right: 20px
+      &--text
+        font-weight: bold
+        font-size: 18px
+        line-height: 28px
+        letter-spacing: 0.02em
+        color: #F5F5F7
+    &-text
+      font-weight: 500
+      font-size: 14px
+      line-height: 200%
+      letter-spacing: -0.06em
+      color: #F5F5F7
+      margin: 0
+  &__sec
+    width: 350px
+    display: flex
+    flex-direction: column
+    &-tel
+      text-decoration: none
+      font-weight: bold
+      font-size: 28px
+      line-height: 28px
+      letter-spacing: -0.02em
+      color: #FFFFFF
+      margin-bottom: 24px
+      &--link
+        text-decoration: underline
+    &-text
+      font-weight: 500
+      font-size: 14px
+      line-height: 200%
+      letter-spacing: -0.06em
+      color: #FAFAFB
+      margin: 0 0 15px 0
+      &--link
+        // color: #6767F6
+        color: #ffffff
+    &-links
+      display: flex
+      flex-direction: column
+      padding: 10px 0 0 0
+      border-top: 2px #7D81AB solid
+    &-link
+      font-weight: 500
+      font-size: 11px
+      line-height: 200%
+      letter-spacing: -0.06em
+      text-decoration-line: underline
+      color: #6767F6
+  &__map
+    position: relative
+    width: 357px
+    height: 242px
+    &-item
+      width: 100%
+      height: 100%
+  &__bottom
+    flex-basis: 100%
+    margin-top: 20px
+    padding: 10px 0
+    border-top: 2px solid #7D81AB
+    border-bottom: 2px solid #7D81AB
+    display: flex
+    justify-content: center
+    & a
+      width: 210px
+      height: 45px
+      display: flex
+      align-items: center
+      justify-content: center
+      border: none
+      text-decoration: none
+    &-vk
+      background: #4E759D
+      margin-right: 208px
+    &-ok
+      background: #EE8208
+  &__dev-info
+    margin: 10px 0 0 0
+    font-weight: 500
+    font-size: 12px
+    line-height: 200%
+    letter-spacing: -0.06em
+    color: #676989
+    flex-basis: 100%
+    display: flex
+    justify-content: flex-end
+
+@media (max-width: 1200px)
+  .footer
+    &__main
+      width: 297px
+      &-link
+        &--img
+          width: 59px
+    &__sec
+      width: 325px
+      &-tel
+        font-size: 24px
+        line-height: 28px
+        margin-bottom: 20px
+    &__map
+      position: relative
+      width: 297px
+      height: 245px
+
+@media (max-width: 992px)
+  .footer
+    &__main
+      width: 335px
+      margin-bottom: 26px
+      &-link
+        margin-right: 10px
+        margin-bottom: 21px
+        &--img
+          width: 59px
+    &__sec
+      width: 335px
+      &-tel
+        font-size: 24px
+        line-height: 28px
+        margin-bottom: 20px
+    &__map
+      position: relative
+      width: 335px
+      height: 180px
+    &__bottom
+      width: 335px
+      flex-basis: auto
+      height: 154px
+      flex-direction: column
+      align-items: center
+      margin-top: 0
+      &-vk
+        margin-bottom: 22px
+        margin-right: 0
+    &__dev
+      &-info
+        margin-top: -24px
+
+@media (max-width: 768px)
+  .footer
+    padding: 22px 0
+    &__main
+      align-items: center
+      width: 100%
+      margin-bottom: 20px
+      &-text
+        text-align: center
+      &-link
+        margin-bottom: 14px
+        &--img
+          width: 88px
+    &-container
+      justify-content: center
+      align-items: center
+    &__sec
+      align-items: center
+      width: 100%
+      margin-bottom: 20px
+      &-text
+        text-align: center
+      &-link
+        text-align: center
+      &-links
+        width: 100%
+        align-items: center
+      &-tel
+        margin-bottom: 14px
+    &__map
+      width: 100%
+      margin-bottom: 20px
+      height: 240px
+    &__bottom
+      width: 100%
+      align-items: center
+    &__dev
+      &-info
+        margin-top: 0
+        justify-content: center
+
+@media (max-width: 576px)
+  .footer
+    padding: 18px 0
+    &__main
+      margin-bottom: 10px
+      &-link
+        margin-bottom: 10px
+        &--text
+          font-size: 16px
+          line-height: 24px
+        &--img
+          width: 80px
+          margin-right: 15px
+      &-text
+        font-size: 12px
+        line-height: 200%
+    &__sec
+      margin-bottom: 10px
+      &-tel
+        margin-bottom: 10px
+        font-size: 20px
+        line-height: 28px
+      &-text
+        font-size: 12px
+        line-height: 200%
+    &__map
+      margin-bottom: 14px
+      height: 200px
+    &__dev
+      &-info
+        font-size: 10px
+        line-height: 200%

@@ -17,8 +17,6 @@
   include 'blocks/accept-cookies.php';
   ?>
 
-
-
 </body>
 
 </html>

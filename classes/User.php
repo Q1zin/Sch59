@@ -16,7 +16,7 @@ class User
       $login = $_SESSION['login'];
       $hash = $_SESSION['hash'];
 
-      $result = $obg_bd->db_query_prepare("SELECT `id`, `name`, `login`, `hash`, `status` FROM `users` WHERE `id` = ? AND `login` = ? AND `hash` = ?", [$id, $login, $hash]);
+      $result = $obg_bd->query_prepare("SELECT `id`, `name`, `login`, `hash`, `status` FROM `users` WHERE `id` = ? AND `login` = ? AND `hash` = ?", [$id, $login, $hash]);
       if (!empty($result)) {
         $result = $result[0];
         $this->id = $result['id'];
