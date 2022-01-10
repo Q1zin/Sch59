@@ -8,7 +8,7 @@
   <script src="/scripts/script-index.js" defer></script>
 </head>
 
-<body>
+<body class="body">
 
   <?php
   include 'blocks/header.php';

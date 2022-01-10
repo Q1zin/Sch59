@@ -15,6 +15,7 @@ doc.querySelector(".log-in__input-password-eye").addEventListener("click", funct
 
 doc.querySelector(".log-in__forgot-password").addEventListener("click", function (event) {
   event.preventDefault()
+  doc.querySelector(".log-in-rem__input-login").value = doc.querySelector(".log-in__input-login").value
   if (doc.documentElement.clientWidth >= 600) {
     doc.querySelector(".log-in__disabled").style.left = "0"
     doc.querySelector(".log-in").style.left = "50%"
@@ -74,3 +75,5 @@ doc.querySelector(".log-in-rem__submit").addEventListener("click", function (eve
     doc.querySelector(".log-in-rem__input-error").innerHTML = "Такого логина не существует"
   }
 })
+
+// console.log(navigator.userAgent); - вывод браузера пользователя

@@ -1,0 +1,103 @@
+.news
+  // outline: 1px blue solid
+  padding: 0 0 50px 0
+  &-wrap
+    width: 100%
+    // display: flex
+    flex-wrap: wrap
+    display: none
+  &--active
+    display: flex
+  &-container
+    flex-direction: column
+    align-items: center
+  &__menu
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 20px
+    margin-bottom: 10px
+    &-item
+      text-decoration: none
+      font-weight: 600
+      font-size: 14px
+      line-height: 17px
+      letter-spacing: -0.015em
+      color: #000000
+      &--active
+        color: #6767F6
+      &:not(:last-child)
+        margin-right: 23px
+  &__item
+    width: 263px
+    padding-bottom: 10px
+    cursor: pointer
+    background-color: #fff
+    &:not(:nth-child(4n))
+      margin-right: 28px
+    &:nth-child(n+5)
+      margin-top: 30px
+    &-top
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      margin-bottom: 14px
+    &-bottom
+      margin-bottom: 17px
+    &-more
+      display: flex
+      &-item
+        font-size: 12px
+        line-height: 15px
+        letter-spacing: 0.035em
+        color: #6767F6
+        &:not(:last-child)
+          margin-right: 10px
+    &-img
+      width: 100%
+      height: 172px
+      object-fit: cover
+    &-title
+      font-weight: 600
+      font-size: 16px
+      line-height: 20px
+      letter-spacing: -0.015em
+      margin: 0 0 8px 0
+    &-text
+      font-size: 12px
+      line-height: 15px
+      letter-spacing: -0.015em
+  &__btn-more
+    margin-top: 30px
+    background-color: #6767F6
+    border-radius: 2px
+    padding: 12px
+    font-weight: 500
+    font-size: 14px
+    line-height: 17px
+    letter-spacing: -0.015em
+    color: #FFFFFF
+    transition: all 0.3s
+    border: 1px #6767F6 solid
+    order: 1
+    &:hover
+      background-color: #FFFFFF
+      color: #6767F6
+  &-show
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: #fff
+    display: flex
+    align-items: center
+    justify-content: center
+    z-index: 1000000000000
+    &__close
+      position: absolute
+      top: 20px
+      right: 20px
+      &-img
+        width: 30px
