@@ -53,27 +53,84 @@ doc.querySelector(".log-in-rem__close").addEventListener("click", function (even
 })
 
 doc.querySelector(".log-in__submit").addEventListener("click", function (event) {
-  // ajax
 
-  if (false) {
-    // редирект в админку
-  } else {
-    // Логин неверный
-    // Пароль неверный
-    doc.querySelector(".log-in__input-error").innerHTML = "Логин неверный"
-  }
+  let login = doc.querySelector(".log-in__input-login").value,
+    password = doc.querySelector(".log-in__input-password").value
+
+  ajaxPost("/requests/login-check.php", `login=${login}&password=${password}`, function (answer) {
+    answer = JSON.parse(answer)
+    if (answer['connect']) {
+      window.location.href = "https://sch59.su/admin/add-news.php"
+    } else {
+      if (answer['loginErorr']) {
+        doc.querySelector(".log-in__input-error").innerHTML = "Логин неверный"
+      } else if (answer['passwordErorr']) {
+        doc.querySelector(".log-in__input-error").innerHTML = "Пароль неверный"
+      } else if (answer['initErorr']) {
+        doc.querySelector(".log-in__input-error").innerHTML = "Инициализация формы не прошла"
+      } else {
+        doc.querySelector(".log-in__input-error").innerHTML = "Неизвестная ошибка"
+      }
+
+    }
+  })
 })
 
 doc.querySelector(".log-in-rem__submit").addEventListener("click", function (event) {
-  // ajax
 
-  if (false) {
-    doc.querySelector(".log-in-rem__input-success").innerHTML = "Инструкции отправлены на почту"
-    doc.querySelector(".log-in-rem__input-error").innerHTML = ""
-  } else {
-    doc.querySelector(".log-in-rem__input-success").innerHTML = ""
-    doc.querySelector(".log-in-rem__input-error").innerHTML = "Такого логина не существует"
-  }
+  let login = doc.querySelector(".log-in-rem__input-login").value
+
+  ajaxPost("/send.php", `loginRecovery=${login}`, function (answer) {
+    console.log(answer)
+    answer = JSON.parse(answer)
+    console.log(answer)
+
+    if (!answer['error']) {
+      doc.querySelector(".log-in-rem__input-success").innerHTML = "Инструкции отправлены на почту"
+      doc.querySelector(".log-in-rem__input-error").innerHTML = ""
+    } else {
+      doc.querySelector(".log-in-rem__input-success").innerHTML = ""
+      if (answer['queryError']) {
+        doc.querySelector(".log-in-rem__input-error").innerHTML = "Такого логина не существует"
+      } else if (answer['initErorr']) {
+        doc.querySelector(".log-in-rem__input-error").innerHTML = "Инициализация формы не прошла"
+      } else if (answer['sendError']) {
+        doc.querySelector(".log-in-rem__input-error").innerHTML = "Ошибка отправки на почту"
+      } else if (answer['exceptionError']) {
+        doc.querySelector(".log-in-rem__input-error").innerHTML = "Техническая ошибка"
+      } else {
+        doc.querySelector(".log-in-rem__input-error").innerHTML = "Неизвестная ошибка"
+      }
+    }
+  })
 })
 
 // console.log(navigator.userAgent); - вывод браузера пользователя
+
+
+function ajaxPost(url, parameters, callback) {
+  // parameters = encodeURIComponent(parameters)
+  if (parameters === false || parameters === null || parameters === undefined) {
+    parameters = "";
+  }
+  var request = new XMLHttpRequest();
+  request.open('POST', url, true);
+  request.addEventListener('readystatechange', function () {
+    if ((request.readyState == 4) && (request.status == 200)) {
+      callback(request.responseText)
+    } else {
+      if (request.readyState == 0) {
+        showError(1, "Request not initialized")
+      }
+      if (request.status == 403) {
+        showError(2, "Forbidden")
+      }
+      if (request.status == 404) {
+        showError(3, "Not Found")
+      }
+
+    }
+  });
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  request.send(parameters);
+}

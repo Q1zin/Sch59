@@ -1,11 +1,11 @@
 <?php
 
+include '../config.php';
+
 if (!isset($_POST['title']) || empty($_POST['title'])) {
   add_error_log("Ошбика при подргузки контента ::: title, var_dump(\$_POST) = " . var_dump($_POST));
   echo json_encode(array("errors" => true));
 }
-
-include '../config.php';
 
 $main_base = new DataBase(BASE_NAME, BASE_USER, BASE_PASS, CHARSET, BASE_HOST);
 $user = new User($main_base);

@@ -1,3 +1,14 @@
+<?php
+
+include '../config.php';
+
+$main_base = new DataBase(BASE_NAME, BASE_USER, BASE_PASS, CHARSET, BASE_HOST);
+$user = new User($main_base);
+
+// print_r($user);
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -10,7 +21,7 @@
   <title>Вход — админ-панель</title>
 </head>
 
-<body>
+<body style="flex-direction: column">
 
   <?php
   include '../blocks/log-in-admin.php';

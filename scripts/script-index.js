@@ -81,6 +81,18 @@ function scrollWidthGet() {
 // -------------------------------
 // Новости (показ новостей)
 // -------------------------------
+
+
+if (doc.querySelector(".news-show__close")) {
+  doc.querySelector(".news-show__close").addEventListener("click", function (event) {
+    event.preventDefault()
+    doc.querySelector(".news-show").style.display = "none"
+    doc.querySelector(".body").classList.remove("stop-scroll")
+    let href = "/"
+    history.pushState({}, null, href);
+  })
+}
+
 doc.querySelector(".news-wrap").addEventListener("click", function (event) {
   if (event.target.closest("div.news__item") == null) return
 
@@ -88,10 +100,14 @@ doc.querySelector(".news-wrap").addEventListener("click", function (event) {
 
   // ajax запрос на получение новости
 
+  ajaxPost("/requests/show_news.php", `id=${event.target.closest("div.news__item").dataset.id}`, function (answer) {
+    answer = JSON.parse(answer)
+    doc.querySelector(".news-show-wrap").innerHTML = answer['content']
+  })
+
   // alert("Новость " + event.target.closest("div.news__item").dataset.id)
 
   doc.querySelector(".news-show").style.display = "flex"
-  doc.querySelector(".news-show-wrap").innerHTML = "Новость, id = " + event.target.closest("div.news__item").dataset.id
   doc.querySelector(".body").classList.add("stop-scroll")
 
   let href = `?art=${event.target.closest("div.news__item").dataset.id}`
@@ -112,16 +128,13 @@ doc.querySelector(".news-wrap").addEventListener("click", function (event) {
 doc.querySelector(".news__menu").addEventListener("click", function (event) {
   event.preventDefault()
   if (!event.target.classList.contains("news__menu-item") || event.target.classList.contains("news__menu-item--active")) return
-
-  // ajax запрос на получение новостей
-
+  doc.querySelector(".news__btn-more").style.display = "none"
   closeAllMenu()
   event.target.classList.add("news__menu-item--active")
-
   if (doc.getElementById(`news__${event.target.dataset.title}`)) {
     closeAllNews()
     doc.getElementById(`news__${event.target.dataset.title}`).classList.add("news--active")
-    if (doc.getElementById(`news__${event.target.dataset.title}`).dataset.count <= 8) {
+    if (doc.getElementById(`news__${event.target.dataset.title}`).dataset.count <= 12) {
       doc.querySelector(".news__btn-more").style.display = "none"
     } else {
       doc.querySelector(".news__btn-more").style.display = "block"
@@ -132,81 +145,59 @@ doc.querySelector(".news__menu").addEventListener("click", function (event) {
     item.classList.add("news-wrap", "news--active")
     item.id = `news__${event.target.dataset.title}`
 
-    // ajax запрос, получение карточек и кол-во карточек
-    item.innerHTML = `<div class="news__item" data-id="1">
-    <div class="news__item-top">
-      <img src="/img/service/news-1-123.jpg" alt="img: news img" class="news__item-img">
-    </div>
-    <div class="news__item-bottom">
-      <h4 class="news__item-title">День учителя</h4>
-      <p class="news__item-text">Поздравление учителей нашей школы за многолетний творческий труд!</p>
-    </div>
-    <div class="news__item-more">
-      <span class="news__item-more-item">28.10.21</span>
-      <span class="news__item-more-item">#поздравления</span>
-    </div>
-  </div>`
-    let countNews = 1
+    ajaxPost("/requests/get_block_news.php", `tag=${event.target.innerHTML}`, function (answer) {
+      answer = JSON.parse(answer)
+      item.innerHTML = answer['content']
+      let countNews = answer['count']
 
-    if (countNews <= 8) {
-      doc.querySelector(".news__btn-more").style.display = "none"
-    } else {
-      doc.querySelector(".news__btn-more").style.display = "block"
-    }
-    item.dataset.count = countNews
-    doc.querySelector(".news-container").appendChild(item)
-    item.addEventListener("click", function (event) {
-      if (event.target.closest("div.news__item") == null) return
+      if (countNews <= 12) {
+        doc.querySelector(".news__btn-more").style.display = "none"
+      } else {
+        doc.querySelector(".news__btn-more").style.display = "block"
+      }
+      item.dataset.count = countNews
+      doc.querySelector(".news-container").appendChild(item)
+      item.addEventListener("click", function (event) {
+        if (event.target.closest("div.news__item") == null) return
 
-      // console.log(event.target.closest("div.news__item").dataset.id)
+        ajaxPost("/requests/show_news.php", `id=${event.target.closest("div.news__item").dataset.id}`, function (answer) {
+          answer = JSON.parse(answer)
+          doc.querySelector(".news-show-wrap").innerHTML = answer['content']
+        })
 
-      // ajax запрос на получение новости
+        doc.querySelector(".news-show").style.display = "flex"
+        doc.querySelector(".news-show-wrap").innerHTML = "Новость, id = " + event.target.closest("div.news__item").dataset.id
+        doc.querySelector(".body").classList.add("stop-scroll")
 
-      // alert("Новость " + event.target.closest("div.news__item").dataset.id)
-
-      doc.querySelector(".news-show").style.display = "flex"
-      doc.querySelector(".news-show-wrap").innerHTML = "Новость, id = " + event.target.closest("div.news__item").dataset.id
-      doc.querySelector(".body").classList.add("stop-scroll")
-
-      let href = `?art=${event.target.closest("div.news__item").dataset.id}`
-      history.pushState({}, null, href);
-
-      doc.querySelector(".news-show__close").addEventListener("click", function (event) {
-        event.preventDefault()
-        doc.querySelector(".news-show").style.display = "none"
-        doc.querySelector(".body").classList.remove("stop-scroll")
-        let href = "/"
+        let href = `?art=${event.target.closest("div.news__item").dataset.id}`
         history.pushState({}, null, href);
+
+        doc.querySelector(".news-show__close").addEventListener("click", function (event) {
+          event.preventDefault()
+          doc.querySelector(".news-show").style.display = "none"
+          doc.querySelector(".body").classList.remove("stop-scroll")
+          let href = "/"
+          history.pushState({}, null, href);
+        })
       })
     })
   }
-
 })
 
-
 doc.querySelector(".news__btn-more").addEventListener("click", function () {
-  if (8 >= doc.querySelector(".news--active").dataset.count - 8) {
+  console.log(doc.querySelector(".news--active").childNodes.length)
+  console.log(doc.querySelector(".news--active").childNodes.length - 2)
+  ajaxPost("/requests/get_item_news.php", `tag=${doc.querySelector(".news__menu-item--active").innerHTML}&start=${doc.querySelector(".news--active").childNodes.length}`, function (answer) {
+    answer = JSON.parse(answer)
+    doc.querySelector(".news--active").innerHTML += answer['content'];
+  })
+
+  doc.querySelector(".news--active").dataset.count = doc.querySelector(".news--active").dataset.count - 12
+  if (0 >= doc.querySelector(".news--active").dataset.count - 12) {
     doc.querySelector(".news__btn-more").style.display = "none"
   } else {
     doc.querySelector(".news__btn-more").style.display = "block"
   }
-  doc.querySelector(".news--active").dataset.count = doc.querySelector(".news--active").dataset.count - 8
-
-  // ajax запрос сортировка от 9 до ... по doc.querySelector(".news--active").id
-
-  doc.querySelector(".news--active").innerHTML += `<div class="news__item" data-id="9">
-  <div class="news__item-top">
-    <img src="/img/service/news-1-123.jpg" alt="img: news img" class="news__item-img">
-  </div>
-  <div class="news__item-bottom">
-    <h4 class="news__item-title">День учителя</h4>
-    <p class="news__item-text">Поздравление учителей нашей школы за многолетний творческий труд!</p>
-  </div>
-  <div class="news__item-more">
-    <span class="news__item-more-item">28.10.21</span>
-    <span class="news__item-more-item">#поздравления</span>
-  </div>
-</div>`
 })
 
 
@@ -220,4 +211,31 @@ function closeAllNews() {
   for (let i = 0; i < doc.querySelectorAll(".news-wrap").length; i++) {
     doc.querySelectorAll(".news-wrap")[i].classList.remove("news--active")
   }
+}
+
+function ajaxPost(url, parameters, callback) {
+  // parameters = encodeURIComponent(parameters)
+  if (parameters === false || parameters === null || parameters === undefined) {
+    parameters = "";
+  }
+  var request = new XMLHttpRequest();
+  request.open('POST', url, true);
+  request.addEventListener('readystatechange', function () {
+    if ((request.readyState == 4) && (request.status == 200)) {
+      callback(request.responseText)
+    } else {
+      if (request.readyState == 0) {
+        showError(1, "Request not initialized")
+      }
+      if (request.status == 403) {
+        showError(2, "Forbidden")
+      }
+      if (request.status == 404) {
+        showError(3, "Not Found")
+      }
+
+    }
+  });
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  request.send(parameters);
 }

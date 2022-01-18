@@ -15,59 +15,6 @@ body
   position: relative
 
 .log-in
-  background: #FFFFFF
-  box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.25)
-  border-radius: 4px
-  width: 292px
-  height: 329px
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-direction: column
-  position: relative
-  overflow: hidden
-  transition: all 0.35s
-  left: 0
-  &__disabled
-    position: absolute
-    top: 0
-    right: 0
-    bottom: 0
-    left: 100%
-    background: rgba(196, 196, 196, 0.46)
-    border-radius: 4px
-    transition: all 0.35s
-    z-index: 1000
-  &__title
-    font-weight: bold
-    font-size: 26px
-    line-height: 32px
-    color: #6050DA
-    margin-top: 0
-    margin-bottom: 16px
-  &__social
-    display: flex
-    align-items: center
-    justify-content: center
-    background-color: #fff
-    cursor: pointer
-    margin-bottom: 12px
-    &-item
-      display: flex
-      align-items: center
-      justify-content: center
-      width: 22px
-      height: 22px
-      border-radius: 50%
-      border: 1px solid #EDEDED
-      &:not(:last-child)
-        margin-right: 10px
-  &__transition
-    font-weight: 600
-    font-size: 10px
-    line-height: 12px
-    color: #9f9d9d
-    margin-bottom: 12px
   &__input
     width: 160px
     background: #F0F0F0
@@ -136,16 +83,10 @@ body
     border: none
     border-radius: 20px
     margin-bottom: 16px
-  &__forgot-password
-    font-weight: bold
-    font-size: 8px
-    line-height: 10px
-    color: #ACACAC
-    text-decoration: none
 
 .log-in-rem
   width: 292px
-  height: 232px
+  padding: 8px 0 26px 0
   background: #FFFFFF
   box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.25)
   border-radius: 4px
@@ -153,14 +94,6 @@ body
   align-items: center
   justify-content: center
   flex-direction: column
-  position: absolute
-  z-index: -1
-  left: 0
-  transition: all 0.35s
-  &__close
-    position: absolute
-    top: 6px
-    right: 6px
   &__title
     font-weight: bold
     font-size: 26px
